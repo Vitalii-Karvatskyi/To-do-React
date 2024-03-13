@@ -1,5 +1,7 @@
 import { useState } from "react"
 import Form from "./components/Form/Form"
+import TaskList from "./components/TaskList/TaskList"
+
 
 
 function App() {
@@ -8,12 +10,17 @@ function App() {
   function addTask(task) {
     setTasks((prev) => [task,...prev])
   }
-  console.log(tasks)
+
+
+  function toggleCheck(id){
+    setTasks((prev) => prev.map(item => item.id == id ? {...item , checked: !item.checked} : item))
+  }
+
   return (
     <div className="container">
       <header>To Do List</header>
       <Form addTask={addTask}/>
-
+      <TaskList tasks={tasks} toggleCheck={toggleCheck}/>
     </div>
   )
 }
