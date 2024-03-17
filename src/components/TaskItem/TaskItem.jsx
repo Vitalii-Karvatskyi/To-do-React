@@ -1,7 +1,7 @@
 import { CheckIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 import styles from "./TaskItem.module.css"
 
-export default function TaskItem({item , toggleCheck}) {
+export default function TaskItem({item , toggleCheck , deleteTask , showEditModal}) {
     const {name,
         id,
         checked
@@ -17,8 +17,8 @@ export default function TaskItem({item , toggleCheck}) {
                 
             </div>
             <div className={styles["task-group"]}>
-                <button className="btn" aria-label={`update ${name} task`}><PencilIcon width={24} height={24}/></button>
-                <button className={`btn ${styles.delete}`} aria-label={`delete ${name} task`}><TrashIcon width={24} height={24}/></button>
+                <button className="btn" aria-label={`update ${name} task`} onClick={()=> showEditModal(item)}><PencilIcon width={24} height={24}/></button>
+                <button className={`btn ${styles.delete}`} onClick={() => deleteTask(id)} aria-label={`delete ${name} task`}><TrashIcon width={24} height={24}/></button>
 
             </div>
         </li>
